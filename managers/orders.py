@@ -1,8 +1,16 @@
+import os
+import uuid
+
 from werkzeug.exceptions import NotFound
 
+from constants import TEMP_FILE_FOLDER
 from db import db
 from managers.auth import auth
 from models.orders import OrderModel
+from services.s3 import S3Service
+from utils.helpers import decode_stl
+
+s3 = S3Service()
 
 
 class OrdersManager:
@@ -12,6 +20,12 @@ class OrdersManager:
 
     @staticmethod
     def create(order_data, customer_pk):
+        stl_name = f"{str(uuid.uuid4())}.stl"
+        path = os.path.join(TEMP_FILE_FOLDER, stl_name)
+        decode_stl(order_data.pop("stl"), path)
+        stl_url = s3.upload_stl(path, stl_name)
+        os.remove(path)
+        order_data["stl_url"] = stl_url
         order_data["customer_pk"] = customer_pk
         order = OrderModel(**order_data)
         db.session.add(order)
