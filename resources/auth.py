@@ -6,6 +6,8 @@ from managers.user import UserManager
 from schemas.request.user import (
     CustomerRegisterRequestSchema,
     CustomerLoginRequestSchema,
+    AdminLoginRequestSchema,
+    WorkerLoginRequestSchema,
 )
 from utils.decorators import validate_schema
 
@@ -26,3 +28,17 @@ class Login(Resource):
         return {"token": token}, 200
 
 
+class LoginAdmin(Resource):
+    @validate_schema(AdminLoginRequestSchema)
+    def post(self):
+        user = UserManager.login_admin(request.get_json())
+        token = AuthManager.encode_token(user)
+        return {"token": token}, 200
+
+
+class LoginWorker(Resource):
+    @validate_schema(WorkerLoginRequestSchema)
+    def post(self):
+        user = UserManager.login_worker(request.get_json())
+        token = AuthManager.encode_token(user)
+        return {"token": token}, 200
