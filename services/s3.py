@@ -29,4 +29,4 @@ class S3Service:
             )
             return f"https://{self.bucket_name}.s3.{self.region}.amazonaws.com/{object_name}"
         except ClientError:
-            raise InternalServerError("Provider is nto available at the moment.")
+            raise InternalServerError("Provider is not available at the moment.")
