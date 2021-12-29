@@ -27,9 +27,6 @@ class ListCreateOffer(Resource):
 
 
 class OfferDetail(Resource):
-    def get(self, pk_):
-        pass
-
     @auth.login_required
     @permission_required(RoleType.admin)
     def delete(self, pk_):
