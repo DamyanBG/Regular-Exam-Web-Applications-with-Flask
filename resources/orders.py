@@ -24,7 +24,7 @@ class ListCreateOrder(Resource):
         current_user = auth.current_user()
         order = OrdersManager.create(request.get_json(), current_user.pk)
         schema = OrderCreateResponseSchema()
-        return schema.dump(order)
+        return schema.dump(order), 201
 
 
 class OrderDetail(Resource):
