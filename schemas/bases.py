@@ -16,3 +16,14 @@ class BaseOfferSchema(Schema):
     title = fields.String(required=True, validate=validate.Length(max=100))
     amount = fields.Float(required=True)
     order_pk = fields.Integer(required=True)
+
+
+class BaseProductSchema(Schema):
+    title = fields.String(required=True, validate=validate.Length(max=100))
+    amount = fields.Float(required=True)
+    description = fields.String(required=True, validate=validate.Length(max=255))
+
+
+class BaseCartSchema(Schema):
+    quantity = fields.Integer(required=True)
+

@@ -11,7 +11,7 @@ def validate_schema(schema_name):
             schema = schema_name()
             errors = schema.validate(data)
             if errors:
-                raise BadRequest("..")
+                raise BadRequest("You are not sending validate data")
             return func(*args, **kwargs)
 
         return decorated_func

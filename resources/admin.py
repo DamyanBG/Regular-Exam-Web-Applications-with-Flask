@@ -9,8 +9,8 @@ from utils.decorators import permission_required, validate_schema
 
 
 class CreateAdmin(Resource):
-    @auth.login_required
-    @permission_required(RoleType.admin)
+    # @auth.login_required
+    # @permission_required(RoleType.admin)
     @validate_schema(RequestCreateAdminSchema)
     def post(self):
         data = request.get_json()

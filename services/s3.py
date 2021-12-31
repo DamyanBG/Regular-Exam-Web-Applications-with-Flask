@@ -30,3 +30,19 @@ class S3Service:
             return f"https://{self.bucket_name}.s3.{self.region}.amazonaws.com/{object_name}"
         except ClientError:
             raise InternalServerError("Provider is not available at the moment.")
+
+    def upload_photo(self, file_name, object_name):
+        try:
+            ext = file_name.split(".")[-1]
+            self.s3.upload_file(
+                file_name,
+                self.bucket_name,
+                object_name,
+                ExtraArgs={
+                    "ACL": "public-read",
+                    "ContentType": f"standard_triangle_file/{ext}",
+                },
+            )
+            return f"https://{self.bucket_name}.s3.{self.region}.amazonaws.com/{object_name}"
+        except ClientError:
+            raise InternalServerError("Provider is not available at the moment.")

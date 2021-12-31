@@ -6,6 +6,7 @@ from werkzeug.exceptions import NotFound
 from constants import TEMP_FILE_FOLDER
 from db import db
 from managers.auth import auth
+from models import RoleType
 from models.orders import OrderModel
 from services.s3 import S3Service
 from utils.helpers import decode_stl
@@ -16,7 +17,12 @@ s3 = S3Service()
 class OrdersManager:
     @staticmethod
     def get_all():
-        return OrderModel.query.all()
+        current_user = auth.current_user()
+        if current_user.role == RoleType.customer:
+            query = OrderModel.query.filter_by(customer_pk=current_user.pk)
+        else:
+            query = OrderModel.query.all()
+        return query
 
     @staticmethod
     def create(order_data, customer_pk):
