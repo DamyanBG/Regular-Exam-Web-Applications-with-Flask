@@ -9,7 +9,7 @@ from constants import TEMP_FILE_FOLDER
 from db import db
 from models import OrderModel
 from services.s3 import S3Service
-from tests.factory import CustomerFactory
+from tests.factories import CustomerFactory
 from tests.helpers import encoded_stl, generate_token, mock_uuid
 
 
