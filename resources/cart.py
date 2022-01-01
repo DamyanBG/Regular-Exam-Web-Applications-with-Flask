@@ -65,6 +65,3 @@ class ShippedCartForWorkers(Resource):
         cart = CartManager.shipped(pk_)
         schema = CartResponseSchema()
         return schema.dump(cart)
-
-
-

@@ -13,7 +13,9 @@ class CartManager:
     @staticmethod
     def create(cart_data, pk_, customer_pk):
         product_pk = pk_
-        check_q = CartModel.query.filter_by(customer_pk=customer_pk, product_pk=pk_, status="open")
+        check_q = CartModel.query.filter_by(
+            customer_pk=customer_pk, product_pk=pk_, status="open"
+        )
         check = check_q.first()
         if check:
             raise BadRequest("You already have this product in your cart!")
@@ -26,7 +28,9 @@ class CartManager:
 
     @staticmethod
     def update(cart_data, pk_, customer_pk):
-        cart_q = CartModel.query.filter_by(customer_pk=customer_pk, product_pk=pk_, status="open")
+        cart_q = CartModel.query.filter_by(
+            customer_pk=customer_pk, product_pk=pk_, status="open"
+        )
         cart = cart_q.first()
         if not cart:
             raise BadRequest("You do not have this product in your cart, please add !")
@@ -35,10 +39,11 @@ class CartManager:
         db.session.commit()
         return cart
 
-
     @staticmethod
     def finish(cart_data, customer_pk):
-        customer_cart_query = CartModel.query.filter_by(customer_pk=customer_pk, status="open")
+        customer_cart_query = CartModel.query.filter_by(
+            customer_pk=customer_pk, status="open"
+        )
         customer_cart = customer_cart_query.all()
         if not customer_cart:
             raise NotFound("You do not have cart created")

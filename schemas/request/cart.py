@@ -1,5 +1,3 @@
-from marshmallow import fields
-
 from schemas.bases import BaseCartSchema, BaseCartCloseSchema
 
 

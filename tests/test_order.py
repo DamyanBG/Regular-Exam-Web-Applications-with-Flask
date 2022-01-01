@@ -35,9 +35,8 @@ class TestOrder(TestCase):
             "title": "Test title",
             "description": "Test description",
             "stl": encoded_stl,
-            "address": "ulica Ivan Shishman 27A, grad Dobrich"
+            "address": "ulica Ivan Shishman 27A, grad Dobrich",
         }
-
 
         customer = CustomerFactory()
         token = generate_token(customer)
@@ -52,11 +51,7 @@ class TestOrder(TestCase):
 
         data.pop("stl")
 
-        expected_resp = {
-            "pk": orders[0].pk,
-            "stl_url": "some-test.url",
-            **data
-        }
+        expected_resp = {"pk": orders[0].pk, "stl_url": "some-test.url", **data}
 
         actual_resp = resp.json
         actual_resp.pop("create_on")

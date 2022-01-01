@@ -17,4 +17,3 @@ class CartModel(db.Model):
     status = db.Column(db.Enum(Status), default=Status.open)
     address = db.Column(db.String(255))
     shipped = db.Column(db.Enum(Shipped), default=Shipped.no)
-

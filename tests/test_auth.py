@@ -33,7 +33,7 @@ class TestAuth(TestCase):
             "password": "123456",
             "first_name": "Test",
             "last_name": "Testov",
-            "phone": "+359895398744"
+            "phone": "+359895398744",
         }
 
         customers = CustomerModel.query.all()
@@ -53,4 +53,3 @@ class TestAuth(TestCase):
         data.pop("password")
 
         assert customer == {"pk": customer["pk"], "role": RoleType.customer, **data}
-

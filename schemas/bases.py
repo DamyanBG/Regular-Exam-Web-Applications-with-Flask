@@ -31,5 +31,3 @@ class BaseCartSchema(Schema):
 
 class BaseCartCloseSchema(Schema):
     address = fields.String(required=True, validate=validate.Length(max=255))
-
-
