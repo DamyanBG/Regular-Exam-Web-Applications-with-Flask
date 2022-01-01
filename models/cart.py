@@ -15,3 +15,5 @@ class CartModel(db.Model):
     product = db.relationship("ProductModel")
     quantity = db.Column(db.Integer, nullable=False)
     status = db.Column(db.Enum(Status), default=Status.open)
+    address = db.Column(db.String(255))
+

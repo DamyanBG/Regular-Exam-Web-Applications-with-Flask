@@ -37,12 +37,13 @@ class CartManager:
 
 
     @staticmethod
-    def finish(customer_pk):
-        customer_cart_query = CartModel.query.filter_by(customer_pk=customer_pk)
+    def finish(cart_data, customer_pk):
+        customer_cart_query = CartModel.query.filter_by(customer_pk=customer_pk, status="open")
         customer_cart = customer_cart_query.all()
         if not customer_cart:
             raise NotFound("You do not have cart created")
-        customer_cart_query.update({"status": Status.closed})
+        cart_data["status"] = Status.closed
+        customer_cart_query.update(cart_data)
         for row in customer_cart:
             db.session.add(row)
             db.session.commit()

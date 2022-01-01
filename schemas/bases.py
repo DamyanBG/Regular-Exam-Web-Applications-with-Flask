@@ -10,6 +10,7 @@ class BaseOrderSchema(Schema):
     title = fields.String(required=True, validate=validate.Length(max=100))
     description = fields.String(required=True, validate=validate.Length(max=255))
     address = fields.String(required=True, validate=validate.Length(max=255))
+    color = fields.String(validate=validate.Length(max=255))
 
 
 class BaseOfferSchema(Schema):
@@ -26,4 +27,9 @@ class BaseProductSchema(Schema):
 
 class BaseCartSchema(Schema):
     quantity = fields.Integer(required=True)
+
+
+class BaseCartCloseSchema(Schema):
+    address = fields.String(required=True, validate=validate.Length(max=255))
+
 
