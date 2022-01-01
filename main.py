@@ -1,19 +1,15 @@
-from flask import Flask
-from flask_cors import CORS
-from flask_migrate import Migrate
-from flask_restful import Api
-
-from config import DevApplicationConfiguration
+from config import create_app
 from db import db
-from resources.routes import routes
 
-app = Flask(__name__)
-app.config.from_object(DevApplicationConfiguration)
+
+app = create_app()
+
 db.init_app(app)
-migrate = Migrate(app, db)
-CORS(app)
-api = Api(app)
-[api.add_resource(*r) for r in routes]
+
+
+@app.before_first_request
+def init_request():
+    db.create_all()
 
 
 
