@@ -1,7 +1,7 @@
 from sqlalchemy import func
 
 from db import db
-from models.enums import Status
+from models.enums import Status, Shipped
 
 
 class CartModel(db.Model):
@@ -16,4 +16,5 @@ class CartModel(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     status = db.Column(db.Enum(Status), default=Status.open)
     address = db.Column(db.String(255))
+    shipped = db.Column(db.Enum(Shipped), default=Shipped.no)
 

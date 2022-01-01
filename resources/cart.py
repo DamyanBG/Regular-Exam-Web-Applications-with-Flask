@@ -5,7 +5,7 @@ from managers.auth import auth
 from managers.cart import CartManager
 from models import RoleType
 from schemas.request.cart import CartCreateRequestSchema, CartCloseRequestSchema
-from schemas.response.cart import CartCreateResponseSchema, CartCloseResponseSchema
+from schemas.response.cart import CartCreateResponseSchema, CartResponseSchema
 from utils.decorators import permission_required, validate_schema
 
 
@@ -36,7 +36,7 @@ class CloseListCart(Resource):
     def put(self):
         current_user = auth.current_user()
         cart = CartManager.finish(request.get_json(), current_user.pk)
-        schema = CartCloseResponseSchema()
+        schema = CartResponseSchema()
         return schema.dump(cart, many=True)
 
     @auth.login_required
@@ -45,7 +45,7 @@ class CloseListCart(Resource):
         # TO DO
         current_user = auth.current_user()
         cart = CartManager.get_your_cart(current_user.pk)
-        schema = CartCreateResponseSchema()
+        schema = CartResponseSchema()
         return schema.dump(cart, many=True)
 
 
@@ -54,7 +54,17 @@ class ListCartForWorkers(Resource):
     @permission_required(RoleType.worker)
     def get(self):
         cart = CartManager.get_all()
-        schema = CartCreateResponseSchema()
+        schema = CartResponseSchema()
         return schema.dump(cart, many=True)
+
+
+class ShippedCartForWorkers(Resource):
+    @auth.login_required
+    @permission_required(RoleType.worker)
+    def get(self, pk_):
+        cart = CartManager.shipped(pk_)
+        schema = CartResponseSchema()
+        return schema.dump(cart)
+
 
 

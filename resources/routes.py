@@ -1,6 +1,6 @@
 from resources.admin import CreateAdmin, CreateWorker
 from resources.auth import Register, Login, LoginAdmin, LoginWorker
-from resources.cart import CreateCart, CloseListCart, ListCartForWorkers
+from resources.cart import CreateCart, CloseListCart, ListCartForWorkers, ShippedCartForWorkers
 from resources.offers import ListCreateOffer, OfferDetail, AcceptOffer, RefuseOffer
 from resources.orders import ListCreateOrder, OrderDetail
 from resources.products import ListCreateDeleteUpdateProduct
@@ -21,5 +21,6 @@ routes = (
     (ListCreateDeleteUpdateProduct, "/workers/products"),
     (CreateCart, "/workers/products/<int:pk_>/add-to-cart"),
     (CloseListCart, "/customers/cart"),
-    (ListCartForWorkers, "/access/cart")
+    (ListCartForWorkers, "/access/cart"),
+    (ShippedCartForWorkers, "/access/cart/<int:pk_>"),
 )

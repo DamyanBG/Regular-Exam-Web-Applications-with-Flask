@@ -16,3 +16,8 @@ class State(enum.Enum):
 class Status(enum.Enum):
     open = "open"
     closed = "closed"
+
+
+class Shipped(enum.Enum):
+    yes = "yes"
+    no = "no"

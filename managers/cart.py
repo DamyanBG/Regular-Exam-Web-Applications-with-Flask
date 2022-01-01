@@ -1,7 +1,7 @@
 from werkzeug.exceptions import NotFound, BadRequest
 
 from db import db
-from models import Status
+from models import Status, Shipped
 from models.cart import CartModel
 
 
@@ -56,3 +56,14 @@ class CartManager:
         if not customer_cart:
             raise NotFound("You do not have cart created")
         return customer_cart
+
+    @staticmethod
+    def shipped(pk_):
+        shipped_cart_query = CartModel.query.filter_by(pk=pk_)
+        shipped_cart = shipped_cart_query.first()
+        if not shipped_cart:
+            raise NotFound("There is no cart with this pk")
+        shipped_cart_query.update({"shipped": Shipped.yes})
+        db.session.add(shipped_cart)
+        db.session.commit()
+        return shipped_cart
