@@ -8,7 +8,7 @@ from resources.cart import (
 )
 from resources.offers import ListCreateOffer, OfferDetail, AcceptOffer, RefuseOffer
 from resources.orders import ListCreateOrder, OrderDetail
-from resources.products import ListCreateDeleteUpdateProduct
+from resources.products import ListCreateDeleteUpdateProduct, DeleteUpdateProduct
 
 routes = (
     (Register, "/register"),
