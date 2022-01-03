@@ -23,7 +23,7 @@ class ListCreateOffer(Resource):
     def post(self):
         offer = OfferManager.create(request.get_json())
         schema = OfferCreateResponseSchema()
-        return schema.dump(offer)
+        return schema.dump(offer), 201
 
 
 class OfferDetail(Resource):

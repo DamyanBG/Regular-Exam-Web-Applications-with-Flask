@@ -25,6 +25,8 @@ class ListCreateDeleteUpdateProduct(Resource):
         schema = ProductCreateResponseSchema()
         return schema.dump(product), 201
 
+
+class DeleteUpdateProduct(Resource):
     @auth.login_required
     @permission_required(RoleType.admin)
     def delete(self, pk_):

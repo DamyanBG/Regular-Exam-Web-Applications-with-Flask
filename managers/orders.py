@@ -26,6 +26,10 @@ class OrdersManager:
 
     @staticmethod
     def create(order_data, customer_pk):
+
+        # The function creates file in TEMP_FILE_FOLDER with uuid name, upload it to S3 bucket and delete the file.
+        # After that it records the data in the OrderModel database (orders table)
+
         stl_name = f"{str(uuid.uuid4())}.stl"
         path = os.path.join(TEMP_FILE_FOLDER, stl_name)
         decode_stl(order_data.pop("stl"), path)

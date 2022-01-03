@@ -19,7 +19,6 @@ class OfferManager:
                 offer_search = offer_query.first()
                 # here there can be added functionality for not offered orders
                 offer.append(offer_search)
-                a = 5
             return offer
         else:
             return OfferModel.query.all()

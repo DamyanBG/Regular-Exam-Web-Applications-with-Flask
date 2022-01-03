@@ -24,6 +24,7 @@ routes = (
     (AcceptOffer, "/customers/offers/<int:pk_>/accept"),
     (RefuseOffer, "/customers/offers/<int:pk_>/refuse"),
     (ListCreateDeleteUpdateProduct, "/workers/products"),
+    (DeleteUpdateProduct, "/workers/products/<int:pk_>"),
     (CreateCart, "/workers/products/<int:pk_>/add-to-cart"),
     (CloseListCart, "/customers/cart"),
     (ListCartForWorkers, "/access/cart"),
