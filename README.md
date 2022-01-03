@@ -8,7 +8,7 @@ The application is running from the main.py file
 
 `POST /register`
 
-  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.8:5000/register
+  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.1:5000/register
   
 ### Response
   
@@ -24,7 +24,7 @@ The application is running from the main.py file
 
 `POST /login`
 
-  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>"}' http://127.0.0.8:5000/register
+  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>"}' http://127.0.0.1:5000/register
  
 ### Response
   
@@ -40,7 +40,7 @@ The application is running from the main.py file
   
 `POST /customers/orders`
   
-  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{"title": "<title>", "description": "<description>", "stl": <stl_file_in_base64>, "address": "<address>"}' http://127.0.0.8:5000/customers/orders
+  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{"title": "<title>", "description": "<description>", "stl": <stl_file_in_base64>, "address": "<address>"}' http://127.0.0.1:5000/customers/orders
   
   ! (color optional) !
   
@@ -66,7 +66,7 @@ The application is running from the main.py file
   
 `GET /customers/orders`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.8:5000/customers/orders
+  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/customers/orders
   
   
 ### Response
@@ -91,7 +91,7 @@ The application is running from the main.py file
   
   `PUT /customers/orders/<int:pk_>`
   
-    curl -X PUT "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{"title": "<title>", "description": "<description>", "stl_url": "<stl_url_in_s3_bucket>", "address": "<address>"}' http://127.0.0.8:5000/customers/orders/<int:pk_>
+    curl -X PUT "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{"title": "<title>", "description": "<description>", "stl_url": "<stl_url_in_s3_bucket>", "address": "<address>"}' http://127.0.0.1:5000/customers/orders/<int:pk_>
   
 ### Response
   
@@ -115,7 +115,7 @@ The application is running from the main.py file
   
   'DELETE /customers/orders/<int:pk_>`
   
-  curl -X DELETE -H "Authorization: Bearer <admin_token>" http://127.0.0.8:5000/customers/orders/<int:pk_>
+  curl -X DELETE -H "Authorization: Bearer <admin_token>" http://127.0.0.1:5000/customers/orders/<int:pk_>
   
 ### Response
     
@@ -127,7 +127,7 @@ The application is running from the main.py file
     
  `POST /admins/create-admin`
 
-  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <admin_token>" -d '{"password": "<password>", "email": "<email>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.8:5000/admins/create-admin
+  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <admin_token>" -d '{"password": "<password>", "email": "<email>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.1:5000/admins/create-admin
   
 ### Response
   
@@ -143,7 +143,7 @@ The application is running from the main.py file
 
 `POST /admins/login`
 
-  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>"}' http://127.0.0.8:5000/admins/login
+  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>"}' http://127.0.0.1:5000/admins/login
  
 ### Response
   
@@ -160,7 +160,7 @@ The application is running from the main.py file
     
  `POST /workers/create-workers`
 
-  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <admin_token>" -d '{"password": "<password>", "email": "<email>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.8:5000/workers/create-workers
+  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <admin_token>" -d '{"password": "<password>", "email": "<email>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.1:5000/workers/create-workers
   
 ### Response
   
@@ -176,7 +176,7 @@ The application is running from the main.py file
 
 `POST /workers/login`
 
-  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>"}' http://127.0.0.8:5000/workers/login
+  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>"}' http://127.0.0.1:5000/workers/login
  
 ### Response
   
@@ -196,7 +196,7 @@ The application is running from the main.py file
     "title": "towa e ofertata za izrabotka na buton",
     "amount": 20,
     "order_pk": 5
- }' http://127.0.0.8:5000/workers/offers
+ }' http://127.0.0.1:5000/workers/offers
   
  ### Response
   
@@ -217,7 +217,7 @@ The application is running from the main.py file
   
 `GET /workers/offers`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.8:5000/workers/offers
+  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/workers/offers
   
   
 ### Response
@@ -239,7 +239,7 @@ The application is running from the main.py file
   
   'DELETE /workers/offers/<int:pk_>`
   
-  curl -X DELETE -H "Authorization: Bearer <admin_token>" http://127.0.0.8:5000/workers/offers/<int:pk_>
+  curl -X DELETE -H "Authorization: Bearer <admin_token>" http://127.0.0.1:5000/workers/offers/<int:pk_>
   
 ### Response
     
@@ -255,7 +255,7 @@ The application is running from the main.py file
     "title": "towa e novata oferta za izrabotka na buton",
     "amount": 30,
     "order_pk": 5
-     }' http://127.0.0.8:5000/workers/offers/<int:pk_>
+     }' http://127.0.0.1:5000/workers/offers/<int:pk_>
   
 ### Response
   
@@ -275,7 +275,7 @@ The application is running from the main.py file
   
 `GET /customers/offers/<int:pk_>/accept`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.8:5000/customers/offers/<int:pk_>/accept
+  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/customers/offers/<int:pk_>/accept
   
   
 ### Response
@@ -296,7 +296,7 @@ The application is running from the main.py file
   
 `GET /customers/offers/<int:pk_>/refuse`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.8:5000/customers/offers/<int:pk_>/refuse
+  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/customers/offers/<int:pk_>/refuse
   
   
 ### Response
@@ -317,7 +317,7 @@ The application is running from the main.py file
   
 `GET /workers/products`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.8:5000/workers/products
+  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/workers/products
   
   
 ### Response
@@ -348,9 +348,9 @@ The application is running from the main.py file
     "title": "Some nice product",
     "description": "Some description"
   }
-  ' http://127.0.0.8:5000/workers/offers
+  ' http://127.0.0.1:5000/workers/offers
   
- ### Response
+### Response
   
   HTTP/1.1" 201 CREATED
   
@@ -367,13 +367,42 @@ The application is running from the main.py file
   
 ### Request
   
-  'DELETE /workers/products`
+  'DELETE /workers/products/<int:pk_>`
   
-  curl -X DELETE -H "Authorization: Bearer <admin_token>" http://127.0.0.8:5000/workers/offers/<int:pk_>
+  curl -X DELETE -H "Authorization: Bearer <admin_token>" http://127.0.0.1:5000/workers/products/<int:pk_>
   
 ### Response
     
   HTTP/1.1" 204 NO CONTENT
+
+
+## Update info about product
+  
+### Reguest
+  
+  `PUT /workers/products/<int:pk_>`
+  
+    curl -X PUT "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{
+    "amount": 30,
+    "photo_url": "https://damyans-bucket.s3.eu-central-1.amazonaws.com/239a7e60-9f48-47e3-8a94-e5b87bc96b04.jpg",
+    "title": "Some nice product",
+    "description": "Some description"
+    }' http://127.0.0.1:5000/workers/products/<int:pk_>
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+  {
+    "create_on": "2022-01-01T18:50:53.080319",
+    "description": "Some description",
+    "amount": 30.0,
+    "title": "Some nice product",
+    "pk": 2,
+    "photo_url": "https://damyans-bucket.s3.eu-central-1.amazonaws.com/239a7e60-9f48-47e3-8a94-e5b87bc96b04.jpg"
+  }
+
+
 
   
  

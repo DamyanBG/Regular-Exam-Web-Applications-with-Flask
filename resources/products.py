@@ -4,7 +4,7 @@ from flask_restful import Resource
 from managers.auth import auth
 from managers.products import ProductsManager
 from models import RoleType
-from schemas.request.products import ProductCreateRequestSchema
+from schemas.request.products import ProductCreateRequestSchema, ProductUpdateRequestSchema
 from schemas.response.products import ProductCreateResponseSchema
 from utils.decorators import permission_required, validate_schema
 
@@ -35,7 +35,7 @@ class DeleteUpdateProduct(Resource):
 
     @auth.login_required
     @permission_required(RoleType.worker)
-    @validate_schema(ProductCreateRequestSchema)
+    @validate_schema(ProductUpdateRequestSchema)
     def put(self, pk_):
         updated_product = ProductsManager.update(request.get_json(), pk_)
         schema = ProductCreateResponseSchema()
