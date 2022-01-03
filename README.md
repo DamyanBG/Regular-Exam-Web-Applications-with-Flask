@@ -186,6 +186,197 @@ The application is running from the main.py file
     "token": "<token>"
   }
   
+ ## Creating offers from workers
+  
+ ### Reguest
+
+`POST /workers/offers`
+  
+  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <worker_token>" -d '{
+    "title": "towa e ofertata za izrabotka na buton",
+    "amount": 20,
+    "order_pk": 5
+ }' http://127.0.0.8:5000/workers/offers
+  
+ ### Response
+  
+  HTTP/1.1" 201 CREATED
+  
+  {
+    "pk": 2,
+    "title": "towa e ofertata za izrabotka na buton",
+    "status": "pending",
+    "amount": 20.0,
+    "order_pk": 5
+  }
+  
+
+ ## List all offers (for customer you see offers for your orders, if you are admin or worker - you receive response for all offers)
+ 
+ ### Reguest
+  
+`GET /workers/offers`
+  
+  curl -H "Authorization: Bearer <token>" http://127.0.0.8:5000/workers/offers
+  
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+  {
+        "pk": 5,
+        "title": "towa e ofertata za izrabotka na buton",
+        "status": "pending",
+        "amount": 20.0,
+        "order_pk": 16
+   }
+  
+  
+## Delete offer 
+  
+### Request
+  
+  'DELETE /workers/offers/<int:pk_>`
+  
+  curl -X DELETE -H "Authorization: Bearer <admin_token>" http://127.0.0.8:5000/workers/offers/<int:pk_>
+  
+### Response
+    
+  HTTP/1.1" 204 NO CONTENT
+  
+## Update info about offer
+  
+### Reguest
+  
+  `PUT /workers/offers/<int:pk_>`
+  
+    curl -X PUT "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{
+    "title": "towa e novata oferta za izrabotka na buton",
+    "amount": 30,
+    "order_pk": 5
+     }' http://127.0.0.8:5000/workers/offers/<int:pk_>
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+  {
+    "pk": 1,
+    "title": "towa e novata oferta za izrabotka na buton",
+    "status": "pending",
+    "amount": 30.0,
+    "order_pk": 5
+  }
+
+## Accept offer 
+ 
+### Reguest
+  
+`GET /customers/offers/<int:pk_>/accept`
+  
+  curl -H "Authorization: Bearer <token>" http://127.0.0.8:5000/customers/offers/<int:pk_>/accept
+  
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+  {
+    "pk": 5,
+    "title": "towa e ofertata za izrabotka na buton",
+    "status": "accepted",
+    "amount": 20.0,
+    "order_pk": 16
+  }
+  
+## Refuse offer 
+ 
+### Reguest
+  
+`GET /customers/offers/<int:pk_>/refuse`
+  
+  curl -H "Authorization: Bearer <token>" http://127.0.0.8:5000/customers/offers/<int:pk_>/refuse
+  
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+  {
+    "pk": 4,
+    "title": "towa e ofertata za izrabotka na buton",
+    "status": "rejected",
+    "amount": 20.0,
+    "order_pk": 15
+  }
+  
+## List all products
+ 
+### Reguest
+  
+`GET /workers/products`
+  
+  curl -H "Authorization: Bearer <token>" http://127.0.0.8:5000/workers/products
+  
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+  {
+        "pk": 1,
+        "photo_url": "https://damyans-bucket.s3.eu-central-1.amazonaws.com/6ccbee4a-6212-4d34-bcf7-e19786e5ac0b.jpg",
+        "description": "Some description",
+        "title": "Some nice product",
+        "create_on": "2022-01-01T18:50:51.318235",
+        "amount": 30.0
+   }
+  
+  ! ! ! LIST OF ALL PRODUCTS ! ! !
+  
+## Creating products
+  
+### Reguest
+
+`POST /workers/products`
+  
+  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <worker_token>" -d '{
+    "amount": 30,
+    "photo_extension": "jpg",
+    "photo":<base64photo>
+    "title": "Some nice product",
+    "description": "Some description"
+  }
+  ' http://127.0.0.8:5000/workers/offers
+  
+ ### Response
+  
+  HTTP/1.1" 201 CREATED
+  
+  {
+    "pk": 11,
+    "photo_url": "https://damyans-bucket.s3.eu-central-1.amazonaws.com/e62ef383-a234-49b6-9c80-fbfed6d5174a.jpg",
+    "description": "Some description",
+    "title": "Some nice product",
+    "create_on": "2022-01-03T21:03:50.863564",
+    "amount": 30.0
+  }
+  
+## Delete product
+  
+### Request
+  
+  'DELETE /workers/products`
+  
+  curl -X DELETE -H "Authorization: Bearer <admin_token>" http://127.0.0.8:5000/workers/offers/<int:pk_>
+  
+### Response
+    
+  HTTP/1.1" 204 NO CONTENT
+
+  
+ 
 
   
 
