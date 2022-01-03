@@ -376,7 +376,7 @@ The application is running from the main.py file
   HTTP/1.1" 204 NO CONTENT
 
 
-## Update info about product
+## Update info about product (the photo will be not changed!)
   
 ### Reguest
   
@@ -402,12 +402,148 @@ The application is running from the main.py file
     "photo_url": "https://damyans-bucket.s3.eu-central-1.amazonaws.com/239a7e60-9f48-47e3-8a94-e5b87bc96b04.jpg"
   }
 
-
-
+## Creating cart or adding products to existing cart
   
+### Reguest
+
+`POST /workers/products/<int:pk_>/add-to-cart`
+  
+  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <worker_token>" -d '{
+    "quantity": 5
+  }'
+  http://127.0.0.1:5000/workers/products/<int:pk_>/add-to-cart
+  
+### Response
+  
+  HTTP/1.1" 201 CREATED
+  
+  {
+    "quantity": 5,
+    "pk": 2,
+    "status": "open",
+    "product_pk": 3,
+    "customer_pk": 10
+  }
+
+## Update quantity of product
+  
+### Reguest
+  
+  `PUT /workers/products/<int:pk_>/add-to-cart`
+  
+    curl -X PUT "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{
+    "quantity": 6
+    }'' http://127.0.0.1:5000/workers/products/<int:pk_>/add-to-cart
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+  {
+    "quantity": 6,
+    "pk": 2,
+    "status": "open",
+    "product_pk": 3,
+    "customer_pk": 10
+  }
+
+## Close cart
+  
+### Reguest
+  
+  `PUT /customers/cart`
+  
+    curl -X PUT "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{
+    "address": "ulishta Dvadeset i chetwyrta Nomer 9"}'
+   
+  http://127.0.0.1:5000//customers/cart
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+  {
+        "quantity": 6,
+        "pk": 2,
+        "status": "closed",
+        "product_pk": 3,
+        "shipped": "no",
+        "address": "ulishta Dvadeset i chetwyrta Nomer 9",
+        "customer_pk": 10
+  }
+
+ ## List the cart with the products inside for the specific customer
  
+ ### Reguest
+  
+`GET /customers/cart`
+  
+  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/customers/cart
+  
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+  {
+        "quantity": 5,
+        "pk": 4,
+        "status": "open",
+        "product_pk": 4,
+        "shipped": "no",
+        "address": null,
+        "customer_pk": 12
+  }
+
+## List all carts for workers
+ 
+### Reguest
+  
+`GET /access/cart`
+  
+  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/access/cart
+  
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+   {
+        "quantity": 5,
+        "pk": 1,
+        "status": "closed",
+        "product_pk": 3,
+        "shipped": "yes",
+        "address": "ulishta Dvadeset i chetwyrta Nomer 9",
+        "customer_pk": 1
+   }
+
+## Change status of cart to shipped
+ 
+### Reguest
+  
+`GET /access/cart/<int:pk_>`
+  
+  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/access/cart/<int:pk_>
+  
+  
+### Response
+  
+  HTTP/1.1" 200 OK
+  
+   {
+    "quantity": 6,
+    "pk": 2,
+    "status": "closed",
+    "product_pk": 3,
+    "shipped": "yes",
+    "address": "ulishta Dvadeset i chetwyrta Nomer 9",
+    "customer_pk": 10
+   }
+
 
   
+
 
   
   

@@ -9,7 +9,7 @@ from schemas.response.cart import CartCreateResponseSchema, CartResponseSchema
 from utils.decorators import permission_required, validate_schema
 
 
-class CreateCart(Resource):
+class CreateUpdateCart(Resource):
     @auth.login_required
     @permission_required(RoleType.customer)
     @validate_schema(CartCreateRequestSchema)
