@@ -1,6 +1,7 @@
 # Flask Rest API e-shop and order system for 3D printing service
 
-The application is running from the main.py file
+The application is running from the main.py file. You need to set or export FLASK_APP = "main.py", after 
+that you need to execute flask run . The server is running on default 127.0.0.1:5000 . 
 
 ## Register of customers
 
@@ -8,14 +9,14 @@ The application is running from the main.py file
 
 `POST /register`
 
-  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.1:5000/register
+  curl -X POST -H "Content-Type: application/json" -d '{"password": "123456", "email": "test@testov.com", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111"}' http://127.0.0.1:5000/register
   
 ### Response
   
   HTTP/1.1" 201 CREATED
   
   {
-    "token": "<token>"
+    "token": "<customer_token>"
   }
 
 ## Login of customers
@@ -24,14 +25,14 @@ The application is running from the main.py file
 
 `POST /login`
 
-  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>"}' http://127.0.0.1:5000/register
+  curl -X POST -H "Content-Type: application/json" -d '{"password": "123456", "email": "test@testov.com"}' http://127.0.0.1:5000/register
  
 ### Response
   
   HTTP/1.1" 200 OK
   
   {
-    "token": "<token>"
+    "token": "<customer_token>"
   }
   
 ## Create order for 3D printing service
@@ -40,7 +41,7 @@ The application is running from the main.py file
   
 `POST /customers/orders`
   
-  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{"title": "<title>", "description": "<description>", "stl": <stl_file_in_base64>, "address": "<address>"}' http://127.0.0.1:5000/customers/orders
+  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <token>" -d '{"title": "<title_>", "description": "<description_>", "stl": <stl_file_in_base64>, "address": "<address_>"}' http://127.0.0.1:5000/customers/orders
   
   ! (color optional) !
   
@@ -51,8 +52,8 @@ The application is running from the main.py file
   {
     "color": null,
     "pk": 9,
-    "address": "<address>",
-    "description": "<description>",
+    "address": "<address_>",
+    "description": "<description_>",
     "title": "buton",
     "stl_url": "<url_in_aws_s3_bucket>",
     "create_on": "2022-01-03T11:16:51.478377",
@@ -66,7 +67,7 @@ The application is running from the main.py file
   
 `GET /customers/orders`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/customers/orders
+  curl -H "Authorization: Bearer <token_>" http://127.0.0.1:5000/customers/orders
   
   
 ### Response
@@ -76,8 +77,8 @@ The application is running from the main.py file
   {
     "color": null,
     "pk": 9,
-    "address": "<address>",
-    "description": "<description>",
+    "address": "<address_>",
+    "description": "<description_>",
     "title": "buton",
     "stl_url": "<url_in_aws_s3_bucket>",
     "create_on": "2022-01-03T11:16:51.478377",
@@ -100,8 +101,8 @@ The application is running from the main.py file
   {
     "color": null,
     "pk": 9,
-    "address": "<address>",
-    "description": "<description>",
+    "address": "<address_>",
+    "description": "<description_>",
     "title": "buton",
     "stl_url": "<url_in_aws_s3_bucket>",
     "create_on": "2022-01-03T11:16:51.478377",
@@ -127,7 +128,7 @@ The application is running from the main.py file
     
  `POST /admins/create-admin`
 
-  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <admin_token>" -d '{"password": "<password>", "email": "<email>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.1:5000/admins/create-admin
+  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <admin_token>" -d '{"password": "<password_>", "email": "<email_>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.1:5000/admins/create-admin
   
 ### Response
   
@@ -143,14 +144,14 @@ The application is running from the main.py file
 
 `POST /admins/login`
 
-  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>"}' http://127.0.0.1:5000/admins/login
+  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password_>", "email": "<email_>"}' http://127.0.0.1:5000/admins/login
  
 ### Response
   
   HTTP/1.1" 200 OK
   
   {
-    "token": "<token>"
+    "token": "<token_>"
   }
   
   
@@ -160,14 +161,14 @@ The application is running from the main.py file
     
  `POST /workers/create-workers`
 
-  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <admin_token>" -d '{"password": "<password>", "email": "<email>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.1:5000/workers/create-workers
+  curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <admin_token>" -d '{"password": "<password_>", "email": "<email_>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.1:5000/workers/create-workers
   
 ### Response
   
   HTTP/1.1" 201 CREATED
   
   {
-    "token": "<token>"
+    "token": "<token_>"
   }
   
 ## Login of workers
@@ -176,14 +177,14 @@ The application is running from the main.py file
 
 `POST /workers/login`
 
-  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password>", "email": "<email>"}' http://127.0.0.1:5000/workers/login
+  curl -X POST -H "Content-Type: application/json" -d '{"password": "<password_>", "email": "<email_>"}' http://127.0.0.1:5000/workers/login
  
 ### Response
   
   HTTP/1.1" 200 OK
   
   {
-    "token": "<token>"
+    "token": "<token_>"
   }
   
  ## Creating offers from workers
@@ -217,7 +218,7 @@ The application is running from the main.py file
   
 `GET /workers/offers`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/workers/offers
+  curl -H "Authorization: Bearer <your_token>" http://127.0.0.1:5000/workers/offers
   
   
 ### Response
@@ -275,7 +276,7 @@ The application is running from the main.py file
   
 `GET /customers/offers/<int:pk_>/accept`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/customers/offers/<int:pk_>/accept
+  curl -H "Authorization: Bearer <token_>" http://127.0.0.1:5000/customers/offers/<int:pk_>/accept
   
   
 ### Response
@@ -296,7 +297,7 @@ The application is running from the main.py file
   
 `GET /customers/offers/<int:pk_>/refuse`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/customers/offers/<int:pk_>/refuse
+  curl -H "Authorization: Bearer <token_>" http://127.0.0.1:5000/customers/offers/<int:pk_>/refuse
   
   
 ### Response
@@ -478,7 +479,7 @@ The application is running from the main.py file
   
 `GET /customers/cart`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/customers/cart
+  curl -H "Authorization: Bearer <token_>" http://127.0.0.1:5000/customers/cart
   
   
 ### Response
@@ -501,7 +502,7 @@ The application is running from the main.py file
   
 `GET /access/cart`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/access/cart
+  curl -H "Authorization: Bearer <token_>" http://127.0.0.1:5000/access/cart
   
   
 ### Response
@@ -524,7 +525,7 @@ The application is running from the main.py file
   
 `GET /access/cart/<int:pk_>`
   
-  curl -H "Authorization: Bearer <token>" http://127.0.0.1:5000/access/cart/<int:pk_>
+  curl -H "Authorization: Bearer <token_>" http://127.0.0.1:5000/access/cart/<int:pk_>
   
   
 ### Response
