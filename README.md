@@ -25,7 +25,7 @@ that you need to execute flask run . The server is running on default 127.0.0.1:
 
 `POST /login`
 
-  curl -X POST -H "Content-Type: application/json" -d '{"password": "123456", "email": "test@testov.com"}' http://127.0.0.1:5000/register
+  curl -X POST -H "Content-Type: application/json" -d '{"password": "123456", "email": "test@testov.com"}' http://127.0.0.1:5000/login
  
 ### Response
   
