@@ -1,7 +1,19 @@
 # Flask Rest API e-shop and order system for 3D printing service
 
+First must be provided .env file, which contains:
+ - DB_USER - PostgreSQL username
+ - DB_PASSWORD - PostgreSQL username password
+ - DB_PORT - PostgreSQL port
+ - DB_NAME - database name
+ - TEST_DB_NAME - test database name
+ - AWS_ACCESS_KEY - AWS access key
+ - AWS_SECRET - AWS access secret key
+ - AWS_BUCKET - AWS bucket name
+ - AWS_REGION - AWS bucket region
+ - JWT_KEY - JWT key
+
 The application is running from the main.py file. You need to set or export FLASK_APP = "main.py", after 
-that you need to execute flask run . The server is running on default 127.0.0.1:5000 . 
+that you need to execute flask run. The server is running on default 127.0.0.1:5000. 
 
 ## Register of customers
 
@@ -159,7 +171,7 @@ that you need to execute flask run . The server is running on default 127.0.0.1:
   
 ### Request
     
- `POST /workers/create-workers`
+ `POST /workers/create-worker`
 
   curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <admin_token>" -d '{"password": "<password_>", "email": "<email_>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.1:5000/workers/create-workers
   
