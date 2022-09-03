@@ -171,7 +171,7 @@ that you need to execute flask run. The server is running on default 127.0.0.1:5
   
 ### Request
     
- `POST /workers/create-workers`
+ `POST /workers/create-worker`
 
   curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <admin_token>" -d '{"password": "<password_>", "email": "<email_>", "first_name": "<first_name>", "last_name": "<last_name>", "phone": "+359111111111}' http://127.0.0.1:5000/workers/create-workers
   
