@@ -12,7 +12,6 @@ from utils.decorators import permission_required, validate_schema
 class ListCreateDeleteUpdateProduct(Resource):
     @auth.login_required
     def get(self):
-        # TO DO
         products = ProductsManager.get_all()
         schema = ProductCreateResponseSchema()
         return schema.dump(products, many=True)
