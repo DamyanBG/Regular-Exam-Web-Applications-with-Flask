@@ -18,6 +18,7 @@ class UserManager:
             if ex.orig.pgcode == UNIQUE_VIOLATION:
                 raise BadRequest("Please login")
             else:
+                # To find better error description, this is database error, not back end sever error
                 InternalServerError("Server error")
         return user
 
